@@ -1,0 +1,42 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    ni-mysql:
+        image: 'mysql:8.0'
+        restart: always
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - ./docker/mysql/initdb.d/00-init.sql:/docker-entrypoint-initdb.d/setup.sql
+        networks:
+            - ni-api
+
+
+    ni-php:
+        image: php:7.3.8-apache
+        depends_on:
+            - ni-mysql
+        volumes:
+            - ./:/var/www/html/
+        ports:
+            - "8099:80"
+        networks:
+            - ni-api
+
+    ni-composer:
+        image: composer:1.9
+        command: [ "composer", "install" ]
+        volumes:
+            - ./:/app
+
+networks:
+    ni-api:
+
+volumes:
+    db_data_ni-mysql:

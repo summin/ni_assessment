@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+
+    protected $table = 'purchased';
 }

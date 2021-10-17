@@ -9,6 +9,7 @@ create table users (
                        name varchar(400) not null default '',
                        email varchar(400) not null default '',
                        password varchar(400) not null default '',
+                       token varchar(400) not null default '',
                        index (email(10))
 ) engine InnoDB;
 
@@ -23,5 +24,5 @@ CREATE TABLE products (
 CREATE TABLE purchased (
                            id int auto_increment primary key,
                            user_id int not null,
-                           products_sku varchar (200)
+                           product_sku varchar (200)
 ) engine InnoDB;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Service\System\FixtureMigration;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -14,6 +15,6 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+Artisan::command('insertFixtures', function () {
+    $this->comment(FixtureMigration::insert());
+})->purpose('NI data migration');

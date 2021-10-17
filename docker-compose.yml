@@ -1,6 +1,7 @@
 # For more information: https://laravel.com/docs/sail
 version: '3'
 services:
+
     ni-mysql:
         image: 'mysql:8.0'
         command: --default-authentication-plugin=mysql_native_password

@@ -13,6 +13,7 @@ namespace App\Service\System;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
@@ -38,15 +39,19 @@ class FixtureMigration
             ],
         ];
 
+        $inserted = [];
+
         foreach ($config as $csvConfig) {
+
             $csv = Reader::createFromPath($csvConfig['path'], 'r');
             $stmt = Statement::create();
             $csv->setHeaderOffset(0);
 
             $records = $stmt->process($csv);
 
+            /** @var Model $model */
 
-            $str = '';
+            $count = 0;
 
             foreach ($records as $record) {
 
@@ -57,9 +62,18 @@ class FixtureMigration
                 }
                 $model->save();
 
+                ++$count;
             }
+
+            $inserted[] = $csvConfig['key'] . ': ' .  $count;
         }
 
-        return 'FixtureMigration insertion: success';
+        if (count($inserted) === 0) {
+            $resultFeedback = 'FixtureMigration: Nothing was inserted';
+        } else {
+            $resultFeedback = 'FixtureMigration inserted csvs: ' . implode(', ', $inserted);
+        }
+
+        return  $resultFeedback;
     }
 }

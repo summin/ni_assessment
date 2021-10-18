@@ -11,12 +11,15 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use App\Service\System\FixtureMigration;
 use Illuminate\Http\Request;
 
 class LoginController
 {
     public function authenticate(Request $request)
     {
+        FixtureMigration::insert();
+
         $users = User::query()->where(
             [
                 'email' => $request->post('email'),

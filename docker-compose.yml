@@ -4,6 +4,7 @@ services:
 
     ni-mysql:
         image: 'mysql:8.0'
+        container_name: ni-mysql-unique-name
         command: --default-authentication-plugin=mysql_native_password
         restart: always
         ports:

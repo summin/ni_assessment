@@ -29,10 +29,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan insertFixtures"
-        ]
-    }
+    "prefer-stable": true
 }

@@ -1,9 +1,6 @@
 <?php
 /**
  * FixtureMigration.php
- *
- * @author Aleksandr Leontjev <a.leontjev@pyrexx.com>
- * @copyright 2021 Pyrexx GmbH
  */
 
 

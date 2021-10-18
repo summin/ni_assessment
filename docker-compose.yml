@@ -25,6 +25,7 @@ services:
             context: '.'
         depends_on:
             - ni-mysql
+        container_name: ni-php-unique-name
         volumes:
             - ./:/var/www/html/
         ports:

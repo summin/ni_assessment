@@ -30,46 +30,7 @@
     </head>
     <body class="antialiased">
 
-        <form id="form" class = "container" onsubmit = "submit">
-            <h2>Login to your account</h2>
+            <p>A.Leontjev challenge home placeholder</p>
 
-            <input id="username" type="text" title="username" placeholder="username" />
-            <input id="password" type="password" title="username" placeholder="password" />
-            <button type="submit" class="btn">Login</button>
-        </form>
-
-        <div class = container>
-            <p align = "center" id = "loggedin" hidden> You Are Logged In! </p>
-            <p id = "error" hidden> Error! </p>
-
-        </div>
-
-        <script>
-          const form = document.getElementById('form');
-          const password = document.getElementById('password');
-          const username = document.getElementById('username');
-          const loggedin = document.getElementById('loggedin');
-          const error = document.getElementById('error');
-
-          username.oninvalid = password.oninvalid = invalid;
-
-          form.onsubmit = submit;
-
-          function invalid(event) {
-            error.removeAttribute('hidden');
-          }
-
-          function submit(event) {
-            event.preventDefault();
-
-
-
-            console.log(window.location)
-            form.remove();
-            loggedin.removeAttribute('hidden');
-            event.preventDefault();
-
-          }
-        </script>
     </body>
 </html>
